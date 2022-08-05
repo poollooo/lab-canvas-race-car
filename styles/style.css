@@ -33,6 +33,13 @@ body button {
 }
 
 #game-board {
-    float: left;
-    padding: 20px 0px;
+  float: left;
+  padding: 20px 0px;
+}
+
+.canva {
+  border: 1px solid red;
+  background-image: url("../images/road.png");
+  width: 282px;
+  height: 441px;
 }
