@@ -2,15 +2,17 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d")
 let hasStarted = 0;
-const roadWidth = 282;
-const roadHeight = 441;
+const roadWidth = 500;
+const roadHeight = 700;
 const background = new Image();
 background.src = './images/road.png'
 const carImage = new Image();
-const xInitialCarPosition = roadWidth / 2
-const yInitialCarPosition = Math.floor(roadHeight * 1)
+const xInitialCarPosition = 228
+const yInitialCarPosition = Math.floor(roadHeight - 150)
 let x = 0;
-
+const carWidth = 158 / 4;
+const carHeight = 319 / 4;
+x = xInitialCarPosition
 
 
 window.onload = () => {
@@ -21,38 +23,40 @@ window.onload = () => {
 
   function startGame() {
     // draw the canvas
-    // drawRoad()
-    canvas.classList.add('road')
+    background.src = './images/road.png'
+    background.onload = () => {
+      ctx.drawImage(background, 0, 0, 500, 700)
+    }
     //draw the car
-    drawCar(xInitialCarPosition, yInitialCarPosition)
-    x = xInitialCarPosition
+    carImage.src = './images/car.png'
+
+
+    carImage.onload = () => {
+      ctx.drawImage(carImage, x, yInitialCarPosition, carWidth, carHeight)
+      console.log('draw car from startGame function')
+    }
 
   }
 }
 
-// function drawRoad() {
-//   background.src = './images/road.png'
-//   background.onload = () => {
-//     ctx.drawImage(background, 0, 0)
-//   }
-//   console.log('draw road')
-// }
+function drawRoad() {
+  background.src = './images/road.png'
+  ctx.drawImage(background, 0, 0, 500, 700)
+  console.log('draw road')
+}
 
 function drawCar(x) {
   carImage.src = './images/car.png'
-  const carWidth = roadWidth / 4;
-  const carHeight = roadHeight / 4;
 
+  ctx.drawImage(carImage, x, yInitialCarPosition, carWidth, carHeight)
 
-  carImage.onload = () => {
-    ctx.drawImage(carImage, x, yInitialCarPosition, carWidth, carHeight)
-  }
-  console.log('draw car')
+  console.log('draw car from startGame function')
+
 }
 
 function drawMovement(x) {
   clearCanvas()
-  // drawRoad()
+  drawRoad()
   drawCar(x)
 }
 
@@ -60,7 +64,6 @@ function drawMovement(x) {
 
 function clearCanvas() {
   ctx.clearRect(0, 0, 500, 700); // 700 and 450 are canvas width and height
-  console.log('clear Canva')
 }
 
 function moveCar() {
@@ -76,19 +79,13 @@ document.addEventListener('keydown', (event) => {
       case 'ArrowLeft':
         console.log('clicked left')
         console.log('x is :', x)
-        // clearCanvas()
         x -= 10
         drawMovement(x)
-        // drawRoad()
-        // x = xInitialCarPosition + 10
-        // drawCar(x)
         break
       case 'ArrowRight':
-        // clearCanvas()
+
         x += 10
         drawMovement(x)
-        // drawRoad()
-        // drawCar(x)
         console.log('clicked right')
         console.log('x is :', x)
         break
