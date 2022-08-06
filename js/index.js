@@ -7,6 +7,7 @@ const roadHeight = 700;
 const background = new Image();
 background.src = './images/road.png'
 const carImage = new Image();
+carImage.src = './images/car.png'
 const xInitialCarPosition = 228
 const yInitialCarPosition = Math.floor(roadHeight - 150)
 let x = 0;
@@ -23,34 +24,24 @@ window.onload = () => {
 
   function startGame() {
     // draw the canvas
-    background.src = './images/road.png'
-    background.onload = () => {
-      ctx.drawImage(background, 0, 0, 500, 700)
-    }
+    ctx.drawImage(background, 0, 0, 500, 700)
+
     //draw the car
-    carImage.src = './images/car.png'
-
-
-    carImage.onload = () => {
-      ctx.drawImage(carImage, x, yInitialCarPosition, carWidth, carHeight)
-      console.log('draw car from startGame function')
-    }
-
+    ctx.drawImage(carImage, x, yInitialCarPosition, carWidth, carHeight)
+    console.log('draw car from startGame function')
   }
 }
 
 function drawRoad() {
-  background.src = './images/road.png'
   ctx.drawImage(background, 0, 0, 500, 700)
   console.log('draw road')
 }
 
 function drawCar(x) {
-  carImage.src = './images/car.png'
 
   ctx.drawImage(carImage, x, yInitialCarPosition, carWidth, carHeight)
 
-  console.log('draw car from startGame function')
+  console.log('draw car from draw Car function')
 
 }
 
